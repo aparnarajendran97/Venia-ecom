@@ -81,7 +81,7 @@
             style="max-width: 150px"
             class="mr-4"
           >
-            {{ selectedPetfoodCategory || 'Pet Food' }}
+            {{ selectedPetfoodCategory || 'Pet Foods' }}
             <v-icon end>mdi-menu-down</v-icon>
           </v-btn>
         </template>
