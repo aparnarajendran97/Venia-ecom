@@ -10,12 +10,5 @@ const store = createStore({
   actions,
   getters,
 })
-store.watch(
-  (state) => state.basket,
-  (newBasket) => {
-    localStorage.setItem('basket', JSON.stringify(newBasket))
-  },
-  { deep: true }
-)
 
 export default store
