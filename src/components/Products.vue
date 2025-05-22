@@ -1,48 +1,23 @@
 <template>
-  <v-container>
+  <v-container >
     <!-- Filters Row -->
-    <v-row align="center" class="mb-4" dense>
-      <v-col cols="12" sm="4" md="3">
-        <v-select
-          v-model="categoryFilter"
-          :items="categories"
-          label="Category"
-          clearable
-          dense
-          hide-details
-        />
+    <v-row align="center justify-center" class="mb-4 text-center" dense>
+      <v-col cols="12" sm="4" md="3" >
+        <v-select v-model="categoryFilter"  :items="categories" label="Category" clearable dense hide-details />
       </v-col>
       <v-col cols="12" sm="4" md="3">
-        <v-select
-          v-model="sortOption"
-          :items="sortOptions"
-          label="Sort by"
-          dense
-          hide-details
-        />
+        <v-select v-model="sortOption" :items="sortOptions" item-title="label" item-value="value" label="Sort by" dense
+          hide-details />
       </v-col>
       <v-col cols="12" sm="4" md="4">
-        <v-text-field
-          v-model="searchTerm"
-          label="Search"
-          append-inner-icon="mdi-magnify"
-          dense
-          hide-details
-          clearable
-        />
+        <v-text-field v-model="searchTerm" label="Search" outlined append-inner-icon="mdi-magnify" dense hide-details
+          clearable />
       </v-col>
     </v-row>
 
     <!-- Products Grid -->
     <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="4"
-        lg="3"
-        v-for="product in paginatedProducts"
-        :key="product.id"
-      >
+      <v-col cols="12" sm="6" md="4" lg="3" v-for="product in paginatedProducts" :key="product.id">
         <v-card @click="openModal(product)" class="cursor-pointer">
           <v-img :src="product.thumbnail" height="180" />
           <v-card-title>{{ product.title }}</v-card-title>
@@ -59,11 +34,7 @@
 
     <!-- View More Button -->
     <v-row justify="center" class="my-4">
-      <v-btn
-        color="primary"
-        v-if="productsToShow < filteredSortedProducts.length"
-        @click="loadMore"
-      >
+      <v-btn color="primary" v-if="productsToShow < filteredSortedProducts.length" @click="loadMore">
         View More
       </v-btn>
     </v-row>
@@ -74,11 +45,7 @@
         <v-card-title>{{ selectedProduct?.title }}</v-card-title>
         <v-card-subtitle>${{ selectedProduct?.price }}</v-card-subtitle>
         <v-card-text>
-          <v-img
-            :src="selectedProduct?.thumbnail"
-            height="250"
-            class="mb-4"
-          />
+          <v-img :src="selectedProduct?.thumbnail" height="250" class="mb-4" />
           <div><strong>Category:</strong> {{ selectedProduct?.category }}</div>
           <div class="mt-2">{{ selectedProduct?.description }}</div>
         </v-card-text>

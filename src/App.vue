@@ -11,17 +11,11 @@ const layouts = {
 </script>
 
 <template>
-  <component :is="layouts[route.meta.layout || 'default']">
-    <router-view />
+  <component  :is="layouts[route.meta.layout || 'default']">
+    <router-view  class="router-container"/>
   </component>
 </template>
-<style >
-.body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  background-color: #f5f5f5;
-  overflow: hidden!important;
-}
-
+<style lang="scss">
+@import "@/styles/styles.scss";
 
 </style>

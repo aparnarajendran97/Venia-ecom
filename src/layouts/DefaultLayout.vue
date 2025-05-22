@@ -1,8 +1,8 @@
 <template>
     <v-app>
-        <v-container>
+        <v-container class="default-container">
             <AppHeader />
-            <v-main>
+            <v-main  >
                 <slot />
             </v-main>
             <!-- <AppFooter /> -->

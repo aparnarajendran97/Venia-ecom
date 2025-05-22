@@ -111,7 +111,13 @@
   
       <!-- Login Button -->
       <v-btn outlined color="white" class="ml-4" @click="login">
-        Login
+        <v-icon size="24">mdi-account</v-icon>
+        <span class="ml-2">Login</span>
+      </v-btn>
+
+      <!-- Wishlist Bag -->
+      <v-btn icon class="ml-4">
+        <v-icon>mdi-heart-outline</v-icon>
       </v-btn>
     </v-app-bar>
   </template>
@@ -172,4 +178,3 @@
     alert('Login clicked! Implement login flow.')
   }
   </script>
-  
