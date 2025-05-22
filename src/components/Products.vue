@@ -1,26 +1,18 @@
 <template>
   <v-container class="router-container pa-6 pa-sm-8 pa-md8">
-    <v-row
-  justify="center"
-  align="center"
-  v-if="loading"
-  class="my-10"
-  style="height: 60vh;" >
->
-  <v-col
-    cols="12"
-    class="d-flex justify-center align-center"
-  >
-    <v-progress-circular
-      indeterminate
-      color="primary"
-      size="50"
-    />
-  </v-col>
-</v-row>
+    <v-row justify="center" align="center" v-if="loading" class="my-10" style="height: 60vh;">
+      
+      <v-col cols="12" class="d-flex justify-center align-center">
+        <v-progress-circular indeterminate color="primary" size="50" />
+      </v-col>
+    </v-row>
 
     <v-row v-else>
       <v-col cols="12">
+        <v-snackbar v-model="showSnackbar" color="green" timeout="2000">
+  <v-icon left>mdi-check-circle</v-icon>
+  {{ snackbarMessage }}
+</v-snackbar>
         <!-- Filters Row -->
         <v-row align="center justify-center" class="mb-4 text-center" dense>
           <v-col cols="12" sm="4" md="3">
@@ -32,14 +24,14 @@
           </v-col>
           <v-col cols="12" sm="4" md="4">
             <v-text-field v-model="searchTerm" label="Search" outlined append-inner-icon="mdi-magnify" dense
-              hide-details clearable />
+              hide-details clearable   @click:clear="onClear()" />
           </v-col>
         </v-row>
 
 
 
         <!-- Product Grid -->
-        <v-row>
+        <v-row v-if="paginatedProducts.length">
           <v-col cols="12" sm="6" md="4" lg="3" v-for="product in paginatedProducts" :key="product.id">
             <v-card @click="openModal(product)" class="cursor-pointer">
               <v-img :src="product.thumbnail" height="180" />
@@ -52,6 +44,11 @@
                 </v-btn>
               </v-card-actions>
             </v-card>
+          </v-col>
+        </v-row>
+        <v-row v-else class="fill-height align-center justify-center">
+          <v-col cols="12" class="text-center">
+            <h2 class="text-h5 mt-4">No Products found !</h2>
           </v-col>
         </v-row>
 
@@ -102,6 +99,9 @@ const searchTerm = ref('')
 const modalOpen = ref(false)
 const selectedProduct = ref(null)
 const loading = computed(() => store.state.loading)
+
+const showSnackbar = ref(false)
+const snackbarMessage = ref('')
 
 const productsToShow = ref(12) // pagination count
 
@@ -172,12 +172,18 @@ function loadMore() {
 
 function addToBasket(product) {
   store.commit('addToBasket', product)
+  snackbarMessage.value = `${product.title} added to basket!`
+  showSnackbar.value = true
   router.push('/basket')
 }
 
 function openModal(product) {
   selectedProduct.value = product
   modalOpen.value = true
+}
+function onClear() {
+  searchTerm.value = '' // optional: manually clear it if needed
+  // optionally trigger filter logic reset here
 }
 
 // Watch filters to reset pagination when filters change

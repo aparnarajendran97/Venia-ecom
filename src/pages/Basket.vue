@@ -9,7 +9,7 @@
       </v-col> <v-col cols="12" md="8">
         <v-card v-for="item in basket" :key="item.id" class="mb-4 pa-4" outlined>
           <!-- Top part: Image + Title stacked vertically on mobile -->
-          <v-row class="flex-column flex-sm-row" align="center">
+          <v-row class="flex-column flex-sm-row" align="center" >
             <v-col cols="12" sm="3" class="text-center">
               <v-img :src="item.images[0]" max-height="100" max-width="100" contain class="mx-auto" />
             </v-col>
@@ -20,17 +20,22 @@
           </v-row>
 
           <!-- Bottom part: Quantity, Price, Subtotal, Remove all in one line on mobile -->
-          <v-row class="align-center" justify="space-between" style="margin-top: 12px;">
+          <v-row class="align-center pa-3" justify="space-between" style="margin-top: 12px;">
+          <v-spacer class="hidden-sm-and-down"/>
             <v-col cols="3" sm="2" class="pa-0">
+              <span class="">Quantity</span>
               <v-text-field v-model.number="item.quantity" type="number" min="1"
                 @change="updateQuantity(item.id, item.quantity)" hide-details dense style="max-width: 70px;" />
             </v-col>
 
             <v-col cols="3" sm="2" class="pa-0 text-center">
+              <span class="">Price</span><br><br>
               <div>${{ item.price.toFixed(2) }}</div>
             </v-col>
 
             <v-col cols="3" sm="2" class="pa-0 text-center">
+              <span class="">Total</span><br><br>
+
               <div>${{ (item.price * item.quantity).toFixed(2) }}</div>
             </v-col>
 
@@ -49,19 +54,19 @@
         <v-card class="pa-3 pa-sm-6" elevation="2">
           <h2 class="text-h6 font-weight-bold mb-4">Order Summary</h2>
 
-          <v-row justify="space-between" class="mb-2">
+          <v-row justify="space-between" class="mb-2 px-3">
             <span>Subtotal</span>
             <span>${{ basketTotal.toFixed(2) }}</span>
           </v-row>
 
-          <v-row justify="space-between" class="mb-2">
+          <v-row justify="space-between" class="mb-2 px-3">
             <span>Shipping</span>
             <span>$5.00</span>
           </v-row>
 
           <v-divider class="my-2" />
 
-          <v-row justify="space-between" class="mb-4">
+          <v-row justify="space-between" class="mb-4 px-3">
             <strong>Total</strong>
             <strong>${{ (basketTotal + 5).toFixed(2) }}</strong>
           </v-row>

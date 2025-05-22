@@ -9,7 +9,6 @@ export default {
         console.error('Error fetching products:', error)
       } finally {
         commit('setLoading', false)
-      
       }
     }
   }

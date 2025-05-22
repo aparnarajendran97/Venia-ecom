@@ -5,7 +5,7 @@
       <v-icon>mdi-menu</v-icon>
     </v-btn>
 
-    <v-toolbar-title class="font-weight-bold" @click="$router.push('/')">VENIA</v-toolbar-title>
+    <v-toolbar-title class="font-weight-bold cp" @click="$router.push('/')">VENIA</v-toolbar-title>
     <v-spacer v-if="!isMobile" />
 
     <!-- Category Menus - Shown only on larger screens -->
