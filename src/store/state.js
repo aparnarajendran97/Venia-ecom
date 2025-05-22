@@ -7,6 +7,7 @@ export default {
       sort: '',
       page: 1,
       pageSize: 12,
+      loading: false
     },
   }
   

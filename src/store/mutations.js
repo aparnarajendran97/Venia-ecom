@@ -2,6 +2,9 @@ export default {
     setProducts(state, products) {
       state.products = products
     },
+    setLoading(state, value) {
+      state.loading = value
+    },
     addToBasket(state, product) {
       const existing = state.basket.find(p => p.id === product.id)
       if (existing) {

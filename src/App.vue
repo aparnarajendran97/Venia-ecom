@@ -15,7 +15,4 @@ const layouts = {
     <router-view  class="router-container"/>
   </component>
 </template>
-<style lang="scss">
-@import "@/styles/styles.scss";
-
-</style>
+<style lang="scss" src="@/styles/styles.scss"></style>
