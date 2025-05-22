@@ -6,7 +6,7 @@
     </v-btn>
 
     <v-toolbar-title class="font-weight-bold">VENIA</v-toolbar-title>
-    <v-spacer />
+    <v-spacer v-if="!isMobile" />
 
     <!-- Category Menus - Shown only on larger screens -->
     <div class="d-none d-sm-flex">
